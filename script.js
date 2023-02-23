@@ -9,8 +9,55 @@ function writePassword() {
   var Special = "!@#$%^&*()";
   var Uppers = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   var Lowers = "abcdefghijklmnopqrstuvwxyz";
+  var FinalPass = "";
 
-  var NumbersS = "0123456789!@#$%^&*()";
+  var FirstPrompt = window.confirm(
+    "Welcome to the Password Generator. Would you like this password to have lowercase letters?"
+  );
+  var SecondPrompt = window.confirm("Ok, what about uppercase letters?");
+  var ThirdPrompt = window.confirm("Want numbers in your password?");
+  var FourthPrompt = window.confirm("What about special characters?");
+  var LengthPrompt = window.prompt(
+    "How long do you want this password to be? Choose a number between 8-128"
+  );
+  var ConfirmPrompt = window.confirm(
+    "Are you sure about all of those choices?"
+  );
+
+  if (LengthPrompt < 8) {
+    window.alert("Error, you need to choose a larger number of inputs");
+    writePassword();
+  } else if (LengthPrompt > 128) {
+    window.alert("Error, you need to choose a smaller number of inputs");
+    writePassword();
+  }
+  if (!FirstPrompt && !SecondPrompt && !ThirdPrompt && !FourthPrompt) {
+    window.alert(
+      "Sorry, if you don't want any type of text we can't make a password for you. See ya"
+    );
+    return;
+  }
+  if (!ConfirmPrompt) {
+    writePassword();
+  } else if (FirstPrompt) {
+    password += Lowers;
+  }
+
+  if (SecondPrompt) {
+    password += Uppers;
+  }
+  if (ThirdPrompt) {
+    password += Numbers;
+  }
+  if (FourthPrompt) {
+    password += Special;
+  }
+  for (var i = 0; i <= LengthPrompt; i++) {
+    var Randomer = Math.floor(Math.random() * password.length);
+    FinalPass += password.substring(Randomer, Randomer + 1);
+  }
+  //My first attempt through, spammed out variables and conditionals. The next day I tested the logic and found errors so restarted simpler
+  /*var NumbersS = "0123456789!@#$%^&*()";
   var NumbersSU = "0123456789!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   var NumbersSUL =
     "0123456789!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
@@ -26,27 +73,10 @@ function writePassword() {
     "!@#$%^&*()abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
   var UpperL = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-
+*/
   /*var passwordText = document.querySelector("#password");
     passwordText.value = password;*/
-
-  var FirstPrompt = window.confirm(
-    "Welcome to the Password Generator. Would you like this password to have lowercase letters?"
-  );
-  var SecondPrompt = window.confirm("Ok, what about uppercase letters?");
-  var ThirdPrompt = window.confirm("Want numbers in your password?");
-  var FourthPrompt = window.confirm("What about special characters?");
-  var LengthPrompt = window.prompt(
-    "How long do you want this password to be? Choose a number between 8-128"
-  );
-
-  if (!FirstPrompt && !SecondPrompt && !ThirdPrompt && !FourthPrompt) {
-    window.alert(
-      "Sorry, if you don't want any type of text we can't make a password for you. See ya"
-    );
-    return;
-  }
-
+  /*
   if (FirstPrompt && SecondPrompt && ThirdPrompt && FourthPrompt) {
     for (var i = 0; i <= LengthPrompt; i++) {
       var Randomer = Math.floor(Math.random() * NumbersSUL.length);
@@ -123,8 +153,8 @@ function writePassword() {
       password += NumbersU.substring(Randomer13, Randomer14 + 1);
     }
   }
-
-  window.alert("Your new password is " + password);
+*/
+  window.alert("Your new password is " + FinalPass);
   // Add event listener to generate button
 }
 generateBtn.addEventListener("click", writePassword);
