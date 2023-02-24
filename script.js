@@ -23,6 +23,7 @@ function writePassword() {
   var ConfirmPrompt = window.confirm(
     "Are you sure about all of those choices?"
   );
+  LengthPrompt = Math.floor(LengthPrompt);
 
   if (LengthPrompt < 8) {
     window.alert("Error, you need to choose a larger number of inputs");
