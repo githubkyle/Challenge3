@@ -157,5 +157,6 @@ function writePassword() {
 */
   window.alert("Your new password is " + FinalPass);
   // Add event listener to generate button
+  password.setAttribute("text", "Test");
 }
 generateBtn.addEventListener("click", writePassword);
