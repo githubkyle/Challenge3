@@ -58,9 +58,8 @@ function writePassword() {
     FinalPass += password.substring(Randomer, Randomer + 1);
   }
 
-  window.alert("Your new password is " + FinalPass);
-
-  document.password.innerHTML = FinalPass;
+  const passwordEl = document.querySelector("#password");
+  passwordEl.value = FinalPass;
 }
 
 generateBtn.addEventListener("click", writePassword);
